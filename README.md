@@ -94,7 +94,7 @@ Integração total com API REST
 
 ## 📄 Licença
 
-MIT License
+**MIT** License
 
 Copyright (c) 2025 Cláudio de Lima Tosta
 
