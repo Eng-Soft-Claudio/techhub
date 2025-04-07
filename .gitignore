@@ -1,0 +1,15 @@
+# Ignore arquivos de log globais
+*.log
+
+# Ignore DS_Store e outros do sistema
+.DS_Store
+Thumbs.db
+
+# Ignore arquivos de sistema/editor
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# Ignore dependências caso estejam fora das pastas específicas
+/node_modules

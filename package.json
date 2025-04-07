@@ -1,0 +1,24 @@
+{
+    "name": "techhub",
+    "private": true,
+    "scripts": {
+        "dev": "concurrently \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\" \"node open-front.js\"",
+        "dev:back": "npm run dev --prefix backend",
+        "dev:front": "npm run dev --prefix frontend",
+        "build": "npm run build --prefix backend && npm run build --prefix frontend",
+        "start": "concurrently \"npm start --prefix backend\" \"npm start --prefix frontend\""
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.24.0",
+        "@typescript-eslint/eslint-plugin": "^8.29.0",
+        "@typescript-eslint/parser": "^8.29.0",
+        "concurrently": "^8.2.2",
+        "eslint": "^9.24.0",
+        "eslint-import-resolver-alias": "^1.1.2",
+        "eslint-plugin-import": "^2.31.0",
+        "eslint-plugin-react-hooks": "^5.2.0",
+        "eslint-plugin-react-refresh": "^0.4.19",
+        "open": "^8.4.0",
+        "typescript-eslint": "^8.29.0"
+    }
+}
