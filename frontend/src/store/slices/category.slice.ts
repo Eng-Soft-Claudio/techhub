@@ -1,11 +1,8 @@
-import { create } from 'zustand';
-import { Category, getAllCategories } from '@/services/categoryService';
+// store/slices/useCategory.ts
 
-interface CategoryState {
-  categories: Category[];
-  isLoading: boolean;
-  fetchCategories: () => Promise<void>;
-}
+import { create } from 'zustand';
+import { getAllCategories } from '@/services/category.service';
+import { CategoryState } from '@/store/types/category.types';
 
 export const useCategory = create<CategoryState>((set) => ({
   categories: [],
@@ -14,6 +11,7 @@ export const useCategory = create<CategoryState>((set) => ({
     set({ isLoading: true });
     try {
       const data = await getAllCategories();
+      console.log("Categorias recebidas:", data);
       set({ categories: data });
     } catch (error) {
       console.error('Erro ao buscar categorias', error);

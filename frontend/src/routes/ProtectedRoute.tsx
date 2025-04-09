@@ -1,17 +1,12 @@
-import { useAuth } from '@/store/useAuth'
-import { JSX } from 'react'
-import { Navigate } from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom';
+import { useAuth } from '@/store/slices/auth.slice';
 
-interface Props {
-  children: JSX.Element
-}
-
-export default function ProtectedRoute({ children }: Props) {
-  const { isAuthenticated } = useAuth()
+export default function ProtectedRoute() {
+  const isAuthenticated = useAuth((state) => state.isAuthenticated);
 
   if (!isAuthenticated) {
-    return <Navigate to="/admin/login" replace />
+    return <Navigate to="/admin/login" replace />;
   }
 
-  return children
+  return <Outlet />;
 }

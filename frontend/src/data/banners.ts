@@ -1,22 +1,21 @@
-// src/data/banners.ts
-export const banners = [
-    {
-      image: "/banners/banner1.jpg",
-      title: "Os melhores periféricos",
-      description: "Teclados, mouses e headsets com o melhor custo-benefício.",
-      link: "/produtos/perifericos"
-    },
-    {
-      image: "/banners/banner2.jpg",
-      title: "PCs Gamer em Promoção",
-      description: "Monte sua máquina dos sonhos com desconto.",
-      link: "/produtos/pcs"
-    },
-    {
-      image: "/banners/banner3.jpg",
-      title: "Notebooks Poderosos",
-      description: "Para produtividade ou games, temos o ideal pra você.",
-      link: "/produtos/notebooks"
-    }
-  ];
-  
+const mockBanners = [
+  {
+    image: "/banner-1.jpg",
+    title: "Ofertas incríveis",
+    description: "Descontos imperdíveis em toda a loja",
+    link: "/ofertas",
+  },
+  {
+    image: "/banner-2.jpg",
+    title: "Tecnologia de ponta",
+    description: "Os melhores gadgets do mercado",
+    link: "/gadgets",
+  },
+  {
+    image: "/banner-3.jpg",
+    title: "Frete Grátis",
+    description: "Nas compras acima de R$500",
+    link: "/frete-gratis",
+  },
+];
+export { mockBanners };

@@ -1,40 +1,35 @@
-import { useRoutes } from 'react-router-dom';
-import { RouteObject } from 'react-router-dom';
-import DefaultLayout from '@/layouts/DefaultLayout';
-import AdminLayout from '@/layouts/AdminLayout';
+import { createBrowserRouter } from 'react-router-dom';
 import Home from '@/pages/Home';
-import CategoryPage from '@/pages/CategoryPage';
+import CategoryPage from '@/pages/category';
 import Dashboard from '@/pages/admin/Dashboard';
 import Login from '@/pages/admin/Login';
+import DefaultLayout from '@/layouts/DefaultLayout';
+import AdminLayout from '@/layouts/AdminLayout';
 import ProtectedRoute from './ProtectedRoute';
 
-export const routes: RouteObject[] = [
+export const AppRouter = createBrowserRouter([
   {
-    path: '/',
     element: <DefaultLayout />,
     children: [
-      { path: '', element: <Home /> },
-      { path: 'categoria/:slug', element: <CategoryPage /> },
-    ],
-  },
-  {
-    path: '/admin',
-    element: (
-      <ProtectedRoute>
-        <AdminLayout />
-      </ProtectedRoute>
-    ),
-    children: [
-      { path: '', element: <Dashboard /> },
+      { path: '/', element: <Home /> },
+      { path: '/categoria/:id', element: <CategoryPage /> },
     ],
   },
   {
     path: '/admin/login',
     element: <Login />,
   },
-];
-
-// Componente que aplica as rotas
-export function AppRoutes() {
-  return useRoutes(routes);
-}
+  {
+    path: '/admin',
+    element: <ProtectedRoute />,
+    children: [
+      {
+        element: <AdminLayout />,
+        children: [
+          { path: 'dashboard', element: <Dashboard /> },
+          // novas rotas protegidas do admin podem ser adicionadas aqui
+        ],
+      },
+    ],
+  },
+]);

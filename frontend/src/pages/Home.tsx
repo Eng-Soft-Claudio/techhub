@@ -4,14 +4,16 @@ import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Rocket, ShieldCheck, Headphones } from "lucide-react";
 
-import CarouselBanner from "@/components/CarouselBanner";
+import CarouselBanner from "@/components/banner/CarouselBanner";
 import CategoryCard from "@/components/cards/CategoryCard";
 import ProductCard from "@/components/cards/ProductCard";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useCategory } from "@/store/useCategory";
+import type { Category } from "@/store/types/category.types";
+import { useCategory } from "@/store/slices/category.slice";
+import { mockProducts } from "@/data/products";
+import { mockBanners } from "@/data/banners";
+import { ROUTES } from '@/constants/routes';
 
-import { mockProducts } from "@/mocks/products";
-import { mockBanners } from "@/mocks/banners";
 
 const Section = ({ children }: { children: React.ReactNode }) => (
   <motion.section
@@ -32,6 +34,8 @@ export default function Home() {
     window.scrollTo({ top: 0, behavior: "smooth" });
     fetchCategories();
   }, []);
+
+  console.log(categories);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-24">
@@ -62,7 +66,7 @@ export default function Home() {
           </div>
         ) : (
           <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-6">
-            {categories.map((category) => (
+            {categories.map((category: Category) => (
               <motion.div
                 key={category._id}
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -91,7 +95,7 @@ export default function Home() {
         <div className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-6">
           {mockProducts.map((product) => (
             <motion.div
-              key={product.name}
+              key={product._id ?? product.name}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3 }}
@@ -114,19 +118,23 @@ export default function Home() {
           </p>
 
           <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {[{
-              icon: Rocket,
-              title: "Entrega Rápida",
-              desc: "Receba em até 3 dias úteis"
-            }, {
-              icon: ShieldCheck,
-              title: "Compra Segura",
-              desc: "Ambiente 100% criptografado"
-            }, {
-              icon: Headphones,
-              title: "Suporte 24h",
-              desc: "Atendimento via chat e WhatsApp"
-            }].map(({ icon: Icon, title, desc }) => (
+            {[
+              {
+                icon: Rocket,
+                title: "Entrega Rápida",
+                desc: "Receba em até 3 dias úteis",
+              },
+              {
+                icon: ShieldCheck,
+                title: "Compra Segura",
+                desc: "Ambiente 100% criptografado",
+              },
+              {
+                icon: Headphones,
+                title: "Suporte 24h",
+                desc: "Atendimento via chat e WhatsApp",
+              },
+            ].map(({ icon: Icon, title, desc }) => (
               <motion.div
                 key={title}
                 className="bg-background p-4 rounded-lg shadow flex flex-col items-center text-center"

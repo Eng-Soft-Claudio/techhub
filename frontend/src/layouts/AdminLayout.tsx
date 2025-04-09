@@ -1,11 +1,27 @@
 import { Outlet } from "react-router-dom";
-import { useAuth } from "@/store/useAuth";
+import { useAuth } from "@/store/slices/auth.slice";
 import AdminSidebar from "./AdminSidebar";
+
 
 export default function AdminLayout() {
   const { logout } = useAuth();
 
-  return (
+  
+const AdminLayout = ({ children }: { children: React.ReactNode }) => {
+    return (
+      <div className="flex">
+        <AdminSidebar />
+        <div className="flex-1 p-6">
+          <div className="mb-6">
+            <h1 className="text-2xl font-semibold">Painel de Administração</h1>
+          </div>
+          {children}
+        </div>
+      </div>
+    );
+  };
+  
+return (
     <div className="flex min-h-screen">
       <AdminSidebar />
 
@@ -24,4 +40,6 @@ export default function AdminLayout() {
       </div>
     </div>
   );
+  
 }
+

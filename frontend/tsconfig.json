@@ -11,9 +11,11 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": "./src",
+    "allowSyntheticDefaultImports": true,
+    "useUnknownInCatchVariables": false,
+    "baseUrl": "src",
     "paths": {
-      "@/*": ["*"]
+      "@/*": ["./*"]
     },
     "types": ["node"],
     "noEmit": true
