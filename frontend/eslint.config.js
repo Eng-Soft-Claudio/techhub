@@ -4,6 +4,7 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import tseslint from 'typescript-eslint';
 import importPlugin from 'eslint-plugin-import';
+import path from 'path'; // necessário para resolver o alias
 
 export default tseslint.config(
   { ignores: ['dist'] },
@@ -25,16 +26,18 @@ export default tseslint.config(
         'warn',
         { allowConstantExport: true },
       ],
-      // Validação de imports
       'import/no-unresolved': 'error',
     },
     settings: {
       'import/resolver': {
+        typescript: {
+          project: './tsconfig.json',
+        },
         alias: {
-          map: [['@', './src']],
+          map: [['@', path.resolve(__dirname, 'src')]],
           extensions: ['.ts', '.tsx', '.js', '.jsx'],
         },
       },
     },
-  },
+  }
 );

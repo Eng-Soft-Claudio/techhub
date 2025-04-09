@@ -20,5 +20,11 @@
         "eslint-plugin-react-refresh": "^0.4.19",
         "open": "^8.4.0",
         "typescript-eslint": "^8.29.0"
+    },
+    "dependencies": {
+        "@fontsource/inter": "^5.2.5",
+        "keen-slider": "^6.8.6",
+        "lucide-react": "^0.487.0",
+        "tailwindcss-animate": "^1.0.7"
     }
 }

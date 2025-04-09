@@ -1,14 +1,40 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { useRoutes } from 'react-router-dom';
+import { RouteObject } from 'react-router-dom';
+import DefaultLayout from '@/layouts/DefaultLayout';
+import AdminLayout from '@/layouts/AdminLayout';
 import Home from '@/pages/Home';
-import CategoryList from '@/pages/CategoryList';
-import AdminDashboard from '@/pages/AdminDashboard';
+import CategoryPage from '@/pages/CategoryPage';
+import Dashboard from '@/pages/admin/Dashboard';
+import Login from '@/pages/admin/Login';
+import ProtectedRoute from './ProtectedRoute';
 
-const router = createBrowserRouter([
-  { path: '/', element: <Home /> },
-  { path: '/categorias', element: <CategoryList /> },
-  { path: '/admin', element: <AdminDashboard /> },
-]);
+export const routes: RouteObject[] = [
+  {
+    path: '/',
+    element: <DefaultLayout />,
+    children: [
+      { path: '', element: <Home /> },
+      { path: 'categoria/:slug', element: <CategoryPage /> },
+    ],
+  },
+  {
+    path: '/admin',
+    element: (
+      <ProtectedRoute>
+        <AdminLayout />
+      </ProtectedRoute>
+    ),
+    children: [
+      { path: '', element: <Dashboard /> },
+    ],
+  },
+  {
+    path: '/admin/login',
+    element: <Login />,
+  },
+];
 
+// Componente que aplica as rotas
 export function AppRoutes() {
-  return <RouterProvider router={router} />;
+  return useRoutes(routes);
 }
