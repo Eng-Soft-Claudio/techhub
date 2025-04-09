@@ -74,7 +74,7 @@ Integração total com API REST
 
 ## 📸 Screenshot (em breve)
 
-    Adicione prints da interface assim que o layout estiver pronto!
+    Irei adicionar prints da interface assim que o layout estiver pronto!
 
 ---
 
