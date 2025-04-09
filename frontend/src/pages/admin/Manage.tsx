@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useToast } from '../../hooks/use-toast';
-import { categoryService, productService } from '../../services';
+import { categoryService } from '../../services/category.service';
+import { addProduct } from '../../services/product.service';
 
 const AdminManage = () => {
   const [bannerImage, setBannerImage] = useState<string>('');
@@ -21,18 +22,18 @@ const AdminManage = () => {
   const handleSaveBanner = async () => {
     try {
       await categoryService.updateBanner({ image: bannerImage });
-      toast('Banner atualizado com sucesso!');
+      toast({ type: 'success', message: 'Banner atualizado com sucesso!' });
     } catch (error) {
-      toast('Erro ao atualizar o banner.');
+      toast({ type: 'error', message: 'Erro ao atualizar o banner.' });
     }
   };
 
   const handleSaveProduct = async () => {
     try {
-      await productService.addProduct({ name: productName, price: productPrice, category: productCategory });
-      toast('Produto adicionado com sucesso!');
+      await addProduct({ name: productName, price: productPrice, category: productCategory });
+      toast({ type: 'success', message: 'Produto adicionado com sucesso!' });
     } catch (error) {
-      toast('Erro ao adicionar o produto.');
+      toast({ type: 'error', message: 'Erro ao adicionar o produto.' });
     }
   };
 
@@ -49,25 +50,25 @@ const AdminManage = () => {
 
       <section className="mt-6">
         <h2 className="text-lg font-medium">Adicionar Produto</h2>
-        <input 
-          type="text" 
-          value={productName} 
-          onChange={(e) => setProductName(e.target.value)} 
-          placeholder="Nome do Produto" 
+        <input
+          type="text"
+          value={productName}
+          onChange={(e) => setProductName(e.target.value)}
+          placeholder="Nome do Produto"
           className="mt-2 p-2 border rounded"
         />
-        <input 
-          type="number" 
-          value={productPrice} 
-          onChange={(e) => setProductPrice(Number(e.target.value))} 
-          placeholder="Preço" 
+        <input
+          type="number"
+          value={productPrice}
+          onChange={(e) => setProductPrice(Number(e.target.value))}
+          placeholder="Preço"
           className="mt-2 p-2 border rounded"
         />
-        <input 
-          type="text" 
-          value={productCategory} 
-          onChange={(e) => setProductCategory(e.target.value)} 
-          placeholder="Categoria" 
+        <input
+          type="text"
+          value={productCategory}
+          onChange={(e) => setProductCategory(e.target.value)}
+          placeholder="Categoria"
           className="mt-2 p-2 border rounded"
         />
         <button onClick={handleSaveProduct} className="mt-2 bg-green-500 text-white p-2 rounded">Salvar Produto</button>

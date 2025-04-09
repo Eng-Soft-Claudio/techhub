@@ -14,7 +14,6 @@ import { mockProducts } from "@/data/products";
 import { mockBanners } from "@/data/banners";
 import { ROUTES } from '@/constants/routes';
 
-
 const Section = ({ children }: { children: React.ReactNode }) => (
   <motion.section
     initial={{ opacity: 0, y: 20 }}
@@ -31,11 +30,18 @@ export default function Home() {
   const { categories, fetchCategories, isLoading } = useCategory();
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    fetchCategories();
-  }, []);
+    const loadCategories = async () => {
+      try {
+        await fetchCategories();
+      } catch (error) {
+        console.error("Erro ao carregar categorias:", error);
+        // Adicione lógica adicional para lidar com o erro, se necessário.
+      }
+    };
 
-  console.log(categories);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    loadCategories();
+  }, [fetchCategories]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-24">
@@ -79,6 +85,7 @@ export default function Home() {
                   onClick={() =>
                     navigate(`/categoria/${category.name.toLowerCase()}`)
                   }
+                  aria-label={`Ver produtos da categoria ${category.name}`}
                 />
               </motion.div>
             ))}
@@ -100,7 +107,7 @@ export default function Home() {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3 }}
             >
-              <ProductCard product={product} />
+              <ProductCard product={product} aria-label={`Ver detalhes do produto ${product.name}`} />
             </motion.div>
           ))}
         </div>

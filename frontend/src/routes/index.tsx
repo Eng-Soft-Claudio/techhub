@@ -3,6 +3,7 @@ import Home from '@/pages/Home';
 import CategoryPage from '@/pages/category';
 import Dashboard from '@/pages/admin/Dashboard';
 import Login from '@/pages/admin/Login';
+import Manage from '@/pages/admin/Manage';
 import DefaultLayout from '@/layouts/DefaultLayout';
 import AdminLayout from '@/layouts/AdminLayout';
 import ProtectedRoute from './ProtectedRoute';
@@ -27,7 +28,8 @@ export const AppRouter = createBrowserRouter([
         element: <AdminLayout />,
         children: [
           { path: 'dashboard', element: <Dashboard /> },
-          // novas rotas protegidas do admin podem ser adicionadas aqui
+          { path: 'manage', element: <Manage /> },
+          // Adicione outras rotas protegidas do admin aqui, se necessário
         ],
       },
     ],
