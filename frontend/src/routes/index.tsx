@@ -6,7 +6,7 @@ import Login from '@/pages/admin/Login';
 import Manage from '@/pages/admin/Manage';
 import DefaultLayout from '@/layouts/DefaultLayout';
 import AdminLayout from '@/layouts/AdminLayout';
-import ProtectedRoute from './ProtectedRoute';
+import ProtectedRoute from './ProtectedRoute'; 
 
 export const AppRouter = createBrowserRouter([
   {
@@ -22,14 +22,14 @@ export const AppRouter = createBrowserRouter([
   },
   {
     path: '/admin',
-    element: <ProtectedRoute />,
+    element: <ProtectedRoute />, // Aqui você protege as rotas dentro do painel admin
     children: [
       {
-        element: <AdminLayout />,
+        element: <AdminLayout />, // AdminLayout é usado para todas as páginas do painel
         children: [
           { path: 'dashboard', element: <Dashboard /> },
           { path: 'manage', element: <Manage /> },
-          // Adicione outras rotas protegidas do admin aqui, se necessário
+          // Adicione outras rotas protegidas aqui
         ],
       },
     ],

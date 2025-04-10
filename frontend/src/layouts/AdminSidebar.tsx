@@ -24,6 +24,8 @@ export default function AdminSidebar() {
                   : "text-muted-foreground hover:bg-muted-foreground/10"
               }`
             }
+            aria-label={label}
+            aria-current={(({ isActive }) => (isActive ? "page" : undefined))({ isActive: true })} // Calcule o valor aqui
           >
             <Icon className="w-5 h-5" />
             <span className="text-sm font-medium">{label}</span>

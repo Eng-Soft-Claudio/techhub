@@ -8,7 +8,6 @@ import { Card, CardContent } from '@/components/ui/card';
 export default function Login() {
   const navigate = useNavigate();
   const login = useAuth((state) => state.login);
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
