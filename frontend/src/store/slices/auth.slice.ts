@@ -13,7 +13,7 @@ export const useAuth = create<AuthState>()(
       login: async (credentials: LoginCredentials) => {
         try {
           const { user, token } = await loginUser(credentials);
-          set({ user, token, isAuthenticated: true });
+          set({ user: user as User, token, isAuthenticated: true });
         } catch (error) {
           console.error('Erro ao fazer login:', error);
           throw error;
@@ -21,11 +21,11 @@ export const useAuth = create<AuthState>()(
       },
 
       logout: () => {
-        set({ user: null, token: null, isAuthenticated: false });
-      },
+        localStorage.removeItem('auth-storage');
+        set({ user: null, token: null, isAuthenticated: false });      },
     }),
     {
-      name: 'auth-storage', // chave usada no localStorage
+      name: 'auth-storage',
       partialize: (state) => ({
         user: state.user,
         token: state.token,

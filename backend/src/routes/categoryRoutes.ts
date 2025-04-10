@@ -1,11 +1,15 @@
 import { Router } from 'express';
 import { categoryController } from '../controllers/categoryController';
+import { authenticateToken } from '../middleware/authMiddleware';
 
 const router = Router();
 
-router.post('/', categoryController.create);
+// Listar categorias (público)
 router.get('/', categoryController.list);
-router.put('/:id', categoryController.update);
-router.delete('/:id', categoryController.remove);
+
+// Rotas protegidas (admin)
+router.post('/', authenticateToken, categoryController.create);
+router.put('/:id', authenticateToken, categoryController.update);
+router.delete('/:id', authenticateToken, categoryController.remove);
 
 export default router;

@@ -13,8 +13,11 @@ export const loginUser = async (credentials: LoginCredentials) => {
   ) {
     return {
       user: {
+        id: '1',
         name: "Administrador",
         email: validUser.email,
+        role: "admin",
+        avatarUrl: "https://via.placeholder.com/150"
       },
       token: "fake-jwt-token",
     };

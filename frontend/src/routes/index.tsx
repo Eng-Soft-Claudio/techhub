@@ -3,7 +3,7 @@ import Home from '@/pages/Home';
 import CategoryPage from '@/pages/category';
 import Dashboard from '@/pages/admin/Dashboard';
 import Login from '@/pages/admin/Login';
-import Manage from '@/pages/admin/Manage';
+import Categories from '@/pages/admin/Categories'; // Importando a nova página de categorias
 import DefaultLayout from '@/layouts/DefaultLayout';
 import AdminLayout from '@/layouts/AdminLayout';
 import ProtectedRoute from './ProtectedRoute'; 
@@ -22,14 +22,13 @@ export const AppRouter = createBrowserRouter([
   },
   {
     path: '/admin',
-    element: <ProtectedRoute />, // Aqui você protege as rotas dentro do painel admin
+    element: <ProtectedRoute />,
     children: [
       {
-        element: <AdminLayout />, // AdminLayout é usado para todas as páginas do painel
+        element: <AdminLayout />,
         children: [
           { path: 'dashboard', element: <Dashboard /> },
-          { path: 'manage', element: <Manage /> },
-          // Adicione outras rotas protegidas aqui
+          { path: 'categories', element: <Categories /> },  {/* Nova Rota para Gerenciamento de Categorias */}
         ],
       },
     ],

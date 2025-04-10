@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { LayoutDashboard, Boxes, Settings } from "lucide-react";
 
 const links = [
-  { to: "/admin", label: "Dashboard", icon: LayoutDashboard },
+  { to: "/admin/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { to: "/admin/categorias", label: "Categorias", icon: Boxes },
   { to: "/admin/produtos", label: "Produtos", icon: Boxes },
   { to: "/admin/configuracoes", label: "Configurações", icon: Settings },

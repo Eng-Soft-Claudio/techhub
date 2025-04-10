@@ -1,13 +1,11 @@
-// store/slices/useCategory.ts
-
 import { create } from 'zustand';
-import { getAllCategories } from '@/services/category.service';
 import { CategoryState } from '@/store/types/category.types';
+import { getAllCategories } from '@/services/category.service';
 
 export const useCategory = create<CategoryState>((set) => ({
   categories: [],
   isLoading: false,
-  fetchCategories: async () => {
+  fetchCategories: async (): Promise<void> => {
     set({ isLoading: true });
     try {
       const data = await getAllCategories();
@@ -20,3 +18,4 @@ export const useCategory = create<CategoryState>((set) => ({
     }
   },
 }));
+
